@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table cellpadding="15">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>PRICE</th>
+        </tr>
+    </thead>
+    <thead>
+        <tr th:each="it:${items}">
+            <td th:text="${it.getId()}"></td>
+            <td th:text="${it.getName()}"></td>
+            <td th:text="${it.getPrice()}"></td>
+        </tr>
+    </thead>
+</table>
+<br><br>
+<form th:action="@{'/addItem'}" method="post">
+    NAME: <input type="text" name="name">
+    PRICE: <input type="text" name="price">
+    <button>ADD ITEM</button>
+</form>
+</body>
+</html>
