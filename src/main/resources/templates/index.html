@@ -7,25 +7,25 @@
 <body>
 <table cellpadding="15">
     <thead>
-        <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>PRICE</th>
-        </tr>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+    </tr>
     </thead>
-    <thead>
-        <tr th:each="it:${items}">
-            <td th:text="${it.getId()}"></td>
-            <td th:text="${it.getName()}"></td>
-            <td th:text="${it.getPrice()}"></td>
-        </tr>
-    </thead>
+    <tbody>
+    <tr th:each="item:${items}">
+        <td th:text="${item.getId()}"></td>
+        <td th:text="${item.getName()}"></td>
+        <td th:text="${item.getPrice()}"></td>
+    </tr>
+    </tbody>
 </table>
 <br><br>
 <form th:action="@{'/addItem'}" method="post">
     NAME: <input type="text" name="name">
     PRICE: <input type="text" name="price">
-    <button>ADD ITEM</button>
+    <button>SUBMIT</button>
 </form>
 </body>
 </html>

@@ -1,22 +1,23 @@
 package kz.bitlab.docker.project.techordadocker.controller;
 
-import kz.bitlab.docker.project.techordadocker.db.DBManager;
 import kz.bitlab.docker.project.techordadocker.model.Item;
+import kz.bitlab.docker.project.techordadocker.service.ItemService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
 
-    @GetMapping(value = "/home")
-    public String homePage(Model model){
-        model.addAttribute("items", DBManager.getItems());
+    private final ItemService itemService;
+
+    @GetMapping(value = "/")
+    public String getIndexPage(Model model){
+        model.addAttribute("items", itemService.getAllItems());
         return "index";
     }
 
@@ -26,7 +27,7 @@ public class HomeController {
         Item item = new Item();
         item.setName(name);
         item.setPrice(price);
-        DBManager.addItem(item);
-        return "redirect:/home";
+        itemService.addItem(item);
+        return "redirect:/";
     }
 }
